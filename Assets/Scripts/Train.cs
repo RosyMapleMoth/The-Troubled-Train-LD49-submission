@@ -60,34 +60,10 @@ public class Train : MonoBehaviour
                 cameraSnapping = false;
             }
         }
-        
+
 
         // DEBUGING! :D
-        if (Time.time > 2 && cars.Count == 2)
-        {
-            RevealCar();
-        }
-        if (Time.time > 4 && cars.Count == 3)
-        {
-            RevealCar();
-        }
-        if (Time.time > 6 && cars.Count == 4)
-        {
-            RevealCar();
-        }
-        if (Time.time > 8 && cars.Count == 5)
-        {
-            RevealCar();
-        }
-        if (Time.time > 10 && cars.Count == 6)
-        {
-            RevealCar();
-        }
-        if (Time.time > 12 && cars.Count == 7)
-        {
-            RevealCar();
-        }
-        if (Time.time > 14 && cars.Count == 8)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             RevealCar();
         }
