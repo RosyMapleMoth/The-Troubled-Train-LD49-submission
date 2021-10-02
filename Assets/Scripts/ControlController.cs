@@ -5,8 +5,12 @@ using UnityEngine;
 public class ControlController : MonoBehaviour
 {
 
-    public int hight = 11;
-    public int width = 19;
+    private int hight = 7;
+    private int width = 13;
+
+    private int hightNegativeOffset = -3;
+    private int widthNegativeOffset = -6;
+    private int UIReSize = 4;
     public bool[,] ControlBoard;
     public GameObject[] typesOfControl;
     public Transform ControlPanelPlane;
@@ -37,11 +41,12 @@ public class ControlController : MonoBehaviour
         {
             GameObject temp = Instantiate(control.ControlBody,Camera.main.transform.position,Camera.main.transform.rotation);
             temp.transform.SetParent(Camera.main.transform);
-            temp.transform.localPosition = new Vector3 (tempCol-9, tempRow-5, 10);
+            Debug.Log ("Control Controller : placing element at internal row " + tempRow + " , col " + tempCol + " real row " + (UIReSize*(tempRow + hightNegativeOffset)) + " , col " + (UIReSize*(tempCol + widthNegativeOffset)));
+            temp.transform.localPosition = new Vector3 (UIReSize*(tempCol + widthNegativeOffset), UIReSize*(tempRow + hightNegativeOffset), 4);
 
-            for (int r = 0; r <= control.xSize;r++)
+            for (int r = 0; r < control.ySize;r++)
             {
-                for (int c = 0; c <= control.ySize; c++)
+                for (int c = 0; c < control.xSize; c++)
                 {
                     ControlBoard[r+tempRow,c+tempCol] = true;
                 }
@@ -65,6 +70,14 @@ public class ControlController : MonoBehaviour
 
     }
     
+
+    public void LogCurrentInternalUIBoard()
+    {
+
+    }
+
+
+
     private bool IsValidPosition(int row, int col, Control control)
     {
 
@@ -73,9 +86,9 @@ public class ControlController : MonoBehaviour
         {
             for (int c = 0; c < control.xSize; c++)
             {
-                if (row + r < hight && col + c < 19 && ControlBoard[r+row,c+col])
+                if (row + r >= hight || col + c >= width || ControlBoard[r+row,c+col])
                 {
-                    Debug.Log ("Can not place element at row " + row + " , col " + col + " becuase of error at row " + (row + r) + " , col " + (col + c));
+                    Debug.Log ("Control Controller : Can not place element at row " + row + " , col " + col + " becuase of error at row " + (row + r) + " , col " + (col + c));
                     return false;
                 }
 
