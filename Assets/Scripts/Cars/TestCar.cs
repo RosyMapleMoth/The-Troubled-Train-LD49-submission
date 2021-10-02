@@ -4,24 +4,17 @@ using UnityEngine;
 
 public class TestCar : MonoBehaviour
 {
-    public Control coal; // The prefab for the coal minigame
+    public Control gamePrefab;  // Assign your minigame prefab to this in the car's prefab
 
     private ControlController controller;
 
     void Awake()
     {
-        controller = (ControlController)FindObjectOfType<ControlController>();
+        controller = FindObjectOfType<ControlController>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        controller.addSpecificControl(coal);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        controller.addSpecificControl(gamePrefab);
     }
 }
