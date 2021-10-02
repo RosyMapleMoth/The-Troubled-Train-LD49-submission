@@ -94,14 +94,12 @@ public class Train : MonoBehaviour
         //ExpandView();
     }
 
-    private void ExpandView()
+    private void RevealCar(int index)
     {
-        //camera.transform.position -= new Vector3(0, 0, 15.75f);
-
-        if(camera.orthographicSize < 25) // Eventually we want to stop zooming out and just move
-        {
-            camera.orthographicSize += 2;
-        }
-        
+        Destroy(cars[cars.Count - 1]);
+        cars[cars.Count - 1] = Instantiate(carTypes[index], transform);
+        cars[cars.Count - 1].transform.position = new Vector3(0, 0, ((cars.Count - 1) * -21));
+        AddHiddenCar();
+        //ExpandView();
     }
 }
