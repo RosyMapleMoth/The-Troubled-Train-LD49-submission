@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class ControlController : MonoBehaviour
 {
 
@@ -12,16 +14,22 @@ public class ControlController : MonoBehaviour
     private const int HIGHT_OFFSET = -3;
     private const int WIDTH_OFFSET = -6;
     private const int UI_SCALER = 4;
-
-
-    public bool[,] ControlBoard;
-    public GameObject[] DEBUG_typesOfControl;
+    public bool[,] controlBoard;
+    private List<Control> currentlyAvilableControls;
+    public GameObject[] allControls;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        ControlBoard = new bool[HIGHT,WIDTH];
+        controlBoard = new bool[HIGHT,WIDTH];
+
+        currentlyAvilableControls = new List<Control>();
+        foreach (GameObject control in allControls)
+        {
+            currentlyAvilableControls.Add(control.GetComponent<Control>());
+        }
+        
     }
 
     // Update is called once per frame
@@ -31,66 +39,126 @@ public class ControlController : MonoBehaviour
     }
 
 
+    public bool areValidMovesLeft()
+    {
+        if (currentlyAvilableControls.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    } 
+
+
 
     public void addRandomControl()
     {
-        int tempRow = Random.Range(0, HIGHT);
-        int tempCol = Random.Range(0, WIDTH);
-        int tempControlIndex = Random.Range(0, DEBUG_typesOfControl.Length);
-        Control control = DEBUG_typesOfControl[tempControlIndex].GetComponent<Control>();
-
-        if (IsValidPosition(tempRow, tempCol, control))
+        if (! areValidMovesLeft())
         {
-            GameObject temp = Instantiate(control.ControlBody,Camera.main.transform.position,Camera.main.transform.rotation);
-            temp.transform.SetParent(Camera.main.transform);
-            Debug.Log ("Control Controller : placing element at internal row " + tempRow + " , col " + tempCol + " real row " + (UI_SCALER*(tempRow + HIGHT_OFFSET)) + " , col " + (UI_SCALER*(tempCol + WIDTH_OFFSET)));
-            temp.transform.localPosition = new Vector3 (UI_SCALER*(tempCol + WIDTH_OFFSET), UI_SCALER*(tempRow + HIGHT_OFFSET), DEPTH);
+            return;
+        }
 
-            for (int r = 0; r < control.ySize;r++)
+        int attempts = 0;
+        bool placement_successful = false;
+        int tempControlIndex = Random.Range(0, currentlyAvilableControls.Count);
+        Control control = currentlyAvilableControls[tempControlIndex].GetComponent<Control>();
+        do 
+        {
+            int tempRow = Random.Range(0, HIGHT);
+            int tempCol = Random.Range(0, WIDTH);
+
+            Debug.Log ("Control Controller : Attempting to place UI element at at internal (" + tempRow + "," + tempCol + ") real (" + (UI_SCALER*(tempRow + HIGHT_OFFSET)) + "," + (UI_SCALER*(tempCol + WIDTH_OFFSET)+ ")"));
+            if (IsValidPosition(tempRow, tempCol, control))
             {
-                for (int c = 0; c < control.xSize; c++)
+                
+                GameObject temp = Instantiate(control.ControlBody,Camera.main.transform.position,Camera.main.transform.rotation);
+                temp.transform.SetParent(Camera.main.transform);
+                Debug.Log ("Control Controller : Placing element at internal (" + tempRow + "," + tempCol + ") real (" + (UI_SCALER*(tempRow + HIGHT_OFFSET)) + "," + (UI_SCALER*(tempCol + WIDTH_OFFSET)+ ")"));
+                temp.transform.localPosition = new Vector3 (UI_SCALER*(tempCol + WIDTH_OFFSET), UI_SCALER*(tempRow + HIGHT_OFFSET), DEPTH);
+                placement_successful = true;
+
+                for (int r = 0; r < control.ySize;r++)
                 {
-                    ControlBoard[r+tempRow,c+tempCol] = true;
+                    for (int c = 0; c < control.xSize; c++)
+                    {
+                        controlBoard[r+tempRow,c+tempCol] = true;
+                    }
+                }
+            }
+            else 
+            {
+                Debug.Log ("Control Controller : Unable to place element at internal (" + tempRow + "," + tempCol + ") real (" + (UI_SCALER*(tempRow + HIGHT_OFFSET)) + "," + (UI_SCALER*(tempCol + WIDTH_OFFSET))+ ")");
+                attempts++;
+            }
+        } while (!placement_successful && attempts < 10);
+
+        if (!placement_successful)
+        {
+            Vector2 tempVec = checkForAvilableSpace(control);
+            if (!tempVec.Equals(Vector2.negativeInfinity))
+            {
+                GameObject temp = Instantiate(control.ControlBody,Camera.main.transform.position,Camera.main.transform.rotation);
+                temp.transform.SetParent(Camera.main.transform);
+                Debug.Log ("Control Controller : Placing element at internal (" + tempVec.x + "," + tempVec.y + ") real (" + (UI_SCALER*(tempVec.x + HIGHT_OFFSET)) + "," + (UI_SCALER*(tempVec.x + WIDTH_OFFSET)+ ")"));
+                temp.transform.localPosition = new Vector3 (UI_SCALER*(tempVec.y + WIDTH_OFFSET), UI_SCALER*(tempVec.x + HIGHT_OFFSET), DEPTH);
+                placement_successful = true;
+
+                for (int r = 0; r < control.ySize;r++)
+                {
+                    for (int c = 0; c < control.xSize; c++)
+                    {
+                        controlBoard[r+(int)tempVec.x,c+(int)tempVec.y] = true;
+                    }
+                }
+            }
+            else
+            {
+                currentlyAvilableControls.Remove(control);
+                if (currentlyAvilableControls.Count > 0)
+                {
+                    addRandomControl();
                 }
             }
         }
-        else 
+    }
+
+    public void addSpecificControl(Control control)
+    {
+        int attempts = 0;
+        bool placement_successful = false;
+        do 
         {
-            try 
+            int tempRow = Random.Range(0, HIGHT);
+            int tempCol = Random.Range(0, WIDTH);
+
+
+            if (IsValidPosition(tempRow, tempCol, control))
             {
-                addRandomControl();
+                GameObject temp = Instantiate(control.ControlBody,Camera.main.transform.position,Camera.main.transform.rotation);
+                temp.transform.SetParent(Camera.main.transform);
+                Debug.Log ("Control Controller : placing element at internal row " + tempRow + " , col " + tempCol + " real row " + (UI_SCALER*(tempRow + HIGHT_OFFSET)) + " , col " + (UI_SCALER*(tempCol + WIDTH_OFFSET)));
+                temp.transform.localPosition = new Vector3 (UI_SCALER*(tempCol + WIDTH_OFFSET), UI_SCALER*(tempRow + HIGHT_OFFSET), 4);
+
+                for (int r = 0; r < control.ySize;r++)
+                {
+                    for (int c = 0; c < control.xSize; c++)
+                    {
+                        controlBoard[r+tempRow,c+tempCol] = true;
+                    }
+                }
             }
-            catch
+            else 
             {
                 Debug.Log("Stack Overflow when adding new UI element. skipping add event");
             }
-        }
-    }
-
-    public void addSpecificControl(Control Control)
-    {
-        int tempRow = Random.Range(0, HIGHT);
-        int tempCol = Random.Range(0, WIDTH);
-        int tempControlIndex = Random.Range(0, DEBUG_typesOfControl.Length);
-        Control control = DEBUG_typesOfControl[tempControlIndex].GetComponent<Control>();
-
-        if (IsValidPosition(tempRow, tempCol, control))
+        } while (!placement_successful && attempts < 10);
+        if (!placement_successful)
         {
-            GameObject temp = Instantiate(control.ControlBody,Camera.main.transform.position,Camera.main.transform.rotation);
-            temp.transform.SetParent(Camera.main.transform);
-            Debug.Log ("Control Controller : placing element at internal row " + tempRow + " , col " + tempCol + " real row " + (UI_SCALER*(tempRow + HIGHT_OFFSET)) + " , col " + (UI_SCALER*(tempCol + WIDTH_OFFSET)));
-            temp.transform.localPosition = new Vector3 (UI_SCALER*(tempCol + WIDTH_OFFSET), UI_SCALER*(tempRow + HIGHT_OFFSET), 4);
-
-            for (int r = 0; r < control.ySize;r++)
-            {
-                for (int c = 0; c < control.xSize; c++)
-                {
-                    ControlBoard[r+tempRow,c+tempCol] = true;
-                }
-            }
+            Debug.Log ("Failed to place Control after " + attempts + "attempts, bother Seaney about adding a better soulution to ensure placement is possible");
         }
     }
-    
 
     public void addSpecificControlAt(int row, int col, Control control)
     {
@@ -105,19 +173,42 @@ public class ControlController : MonoBehaviour
             {
                 for (int c = 0; c < control.xSize; c++)
                 {
-                    ControlBoard[r+row,c+col] = true;
+                    controlBoard[r+row,c+col] = true;
                 }
             }
+        }
+        else
+        {
+            Debug.Log("Spot is not avilable for selected UI element");
         }
     }
 
 
 
-    public void LogCurrentInternalUIBoard()
+    public void addSpecificControlAt(Vector2 pos, Control control)
     {
+        int row  = (int)pos.x;
+        int col = (int)pos.y;
+        if (IsValidPosition(row, col, control))
+        {
+            GameObject temp = Instantiate(control.ControlBody,Camera.main.transform.position,Camera.main.transform.rotation);
+            temp.transform.SetParent(Camera.main.transform);
+            Debug.Log ("Control Controller : placing element at internal row " + row + " , col " + col + " real row " + (UI_SCALER*(row + HIGHT_OFFSET)) + " , col " + (UI_SCALER*(col + WIDTH_OFFSET)));
+            temp.transform.localPosition = new Vector3 (UI_SCALER*(col + WIDTH_OFFSET), UI_SCALER*(row + HIGHT_OFFSET), DEPTH);
 
+            for (int r = 0; r < control.ySize;r++)
+            {
+                for (int c = 0; c < control.xSize; c++)
+                {
+                    controlBoard[r+row,c+col] = true;
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Spot is not avilable for selected UI element");
+        }
     }
-
 
     /// <summary>
     /// Returns if the currently selected peice can be placed in the position given
@@ -128,15 +219,13 @@ public class ControlController : MonoBehaviour
     /// <returns></returns>
     private bool IsValidPosition(int row, int col, Control control)
     {
-
-        Debug.Log ("attempting to place UI element at row " + row + " , col " + col);
         for (int r = 0; r < control.ySize; r++)
         {
             for (int c = 0; c < control.xSize; c++)
             {
-                if (row + r >= HIGHT || col + c >= WIDTH || ControlBoard[r+row,c+col])
+                if (row + r >= HIGHT || col + c >= WIDTH || controlBoard[r+row,c+col])
                 {
-                    Debug.Log ("Control Controller : Can not place element at row " + row + " , col " + col + " becuase of error at row " + (row + r) + " , col " + (col + c));
+                    Debug.Log ("Control Controller : Can not place element at (" + row + "," + col + ") becuase of error at (" + (row + r) + "," + (col + c)+")");
                     return false;
                 }
 
@@ -146,4 +235,22 @@ public class ControlController : MonoBehaviour
     }
 
 
+    public Vector2 checkForAvilableSpace(Control control)
+    {
+        for (int r = 0; r < HIGHT;r++)
+        {
+            for (int c = 0; c < WIDTH; c++)
+            {
+                if (controlBoard[r,c])
+                {
+                    continue;
+                }
+                else if (IsValidPosition(r,c,control))
+                {
+                    return new Vector2(r,c);
+                }
+            }
+        }
+        return Vector2.negativeInfinity;
+    }
 }

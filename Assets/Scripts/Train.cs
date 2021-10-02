@@ -17,6 +17,11 @@ public class Train : MonoBehaviour
 
     private List<GameObject> cars; // All of the cars which form the train
 
+    private bool cameraSnapping = false; // Used to determine if the car is snapping 
+    private float cameraSnapTime = 0f; // Used to track when the camera started snapping
+    private Vector3 cameraSnapStart = new Vector3(); // The location the camera snapped from
+    private Vector3 cameraSnapStop = new Vector3(); // The location the camera is snapping to
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,47 +34,36 @@ public class Train : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.D))
+        if(!cameraSnapping) // Only allow the player to move the camera if the game isn't controlling it
         {
-            if(camera.transform.position.z < -15.75f)
+            if (Input.GetKey(KeyCode.D))
             {
-                camera.transform.position += new Vector3(0, 0, (cameraSpeed * Time.deltaTime));
+                if (camera.transform.position.z < -15.75f)
+                {
+                    camera.transform.position += new Vector3(0, 0, (cameraSpeed * Time.deltaTime));
+                }
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                if (camera.transform.position.z > (-15.75f - (21 * cars.Count)))
+                {
+                    camera.transform.position -= new Vector3(0, 0, (cameraSpeed * Time.deltaTime));
+                }
             }
         }
-        if (Input.GetKey(KeyCode.A))
+        else
         {
-            if (camera.transform.position.z > (-15.75f - (21 * cars.Count)))
+            camera.transform.position = Vector3.Lerp(cameraSnapStart, cameraSnapStop, (Time.time - cameraSnapTime));
+
+            if (Time.time > cameraSnapTime + 1)
             {
-                camera.transform.position -= new Vector3(0, 0, (cameraSpeed * Time.deltaTime));
+                cameraSnapping = false;
             }
         }
 
+
         // DEBUGING! :D
-        if (Time.time > 2 && cars.Count == 2)
-        {
-            RevealCar();
-        }
-        if (Time.time > 4 && cars.Count == 3)
-        {
-            RevealCar();
-        }
-        if (Time.time > 6 && cars.Count == 4)
-        {
-            RevealCar();
-        }
-        if (Time.time > 8 && cars.Count == 5)
-        {
-            RevealCar();
-        }
-        if (Time.time > 10 && cars.Count == 6)
-        {
-            RevealCar();
-        }
-        if (Time.time > 12 && cars.Count == 7)
-        {
-            RevealCar();
-        }
-        if (Time.time > 14 && cars.Count == 8)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             RevealCar();
         }
@@ -87,7 +81,7 @@ public class Train : MonoBehaviour
         cars[cars.Count - 1] = Instantiate(carTypes[0], transform);
         cars[cars.Count - 1].transform.position = new Vector3(0, 0, ((cars.Count - 1) * -21));
         AddHiddenCar();
-        //ExpandView();
+        MoveCameraToCar(cars.Count - 2);
     }
 
     private void RevealCar(int index)
@@ -96,6 +90,13 @@ public class Train : MonoBehaviour
         cars[cars.Count - 1] = Instantiate(carTypes[index], transform);
         cars[cars.Count - 1].transform.position = new Vector3(0, 0, ((cars.Count - 1) * -21));
         AddHiddenCar();
-        //ExpandView();
+    }
+
+    private void MoveCameraToCar(int index)
+    {
+        cameraSnapping = true;
+        cameraSnapStart = camera.transform.position;
+        cameraSnapStop = new Vector3(camera.transform.position.x, camera.transform.position.y, (-15.75f - (21 * index)));
+        cameraSnapTime = Time.time;
     }
 }

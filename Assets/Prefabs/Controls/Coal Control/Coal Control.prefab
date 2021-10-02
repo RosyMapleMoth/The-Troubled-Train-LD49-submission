@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 438726079730942016}
   - component: {fileID: 342802907462515419}
   - component: {fileID: 1940488163828726314}
+  - component: {fileID: 5763229503541212499}
   m_Layer: 0
   m_Name: Coal Control
   m_TagString: Untagged
@@ -257,6 +258,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5763229503541212499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001614177029765182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e464a9bdf01fb1e489e992bf30b958ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 9068712727369694091}
+  decay: 0.5
+  fuel: 2
 --- !u!1 &3043972648168845007
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,8 +527,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
+    - target: {fileID: 7872432923240293753, guid: 36d5ae0451a2bfd4ea2865a87d850d79,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36d5ae0451a2bfd4ea2865a87d850d79, type: 3}
+--- !u!1 &9068712727369694091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4682672563223898464, guid: 36d5ae0451a2bfd4ea2865a87d850d79,
+    type: 3}
+  m_PrefabInstance: {fileID: 4406415785417937643}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4000859464581566542 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 766548393205318309, guid: 36d5ae0451a2bfd4ea2865a87d850d79,
