@@ -312,8 +312,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -618,5 +618,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8747885162890836148, guid: 8db5439d47805de408c9e0db9e14ed4e,
+        type: 3}
+      propertyPath: typesOfControl.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747885162890836148, guid: 8db5439d47805de408c9e0db9e14ed4e,
+        type: 3}
+      propertyPath: typesOfControl.Array.data[0]
+      value: 
+      objectReference: {fileID: 4683616841728617278, guid: 2690b774ed04cb047bea561fd715d215,
+        type: 3}
+    - target: {fileID: 8747885162890836148, guid: 8db5439d47805de408c9e0db9e14ed4e,
+        type: 3}
+      propertyPath: typesOfControl.Array.data[1]
+      value: 
+      objectReference: {fileID: 2001614177029765182, guid: 60f2b7cc8b0b63a48944e1fcc463da1b,
+        type: 3}
+    - target: {fileID: 8747885162890836148, guid: 8db5439d47805de408c9e0db9e14ed4e,
+        type: 3}
+      propertyPath: typesOfControl.Array.data[2]
+      value: 
+      objectReference: {fileID: 4683616841728617278, guid: 2690b774ed04cb047bea561fd715d215,
+        type: 3}
+    - target: {fileID: 8747885162890836148, guid: 8db5439d47805de408c9e0db9e14ed4e,
+        type: 3}
+      propertyPath: DEBUG_typesOfControl.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747885162890836148, guid: 8db5439d47805de408c9e0db9e14ed4e,
+        type: 3}
+      propertyPath: DEBUG_typesOfControl.Array.data[0]
+      value: 
+      objectReference: {fileID: 4683616841728617278, guid: 2690b774ed04cb047bea561fd715d215,
+        type: 3}
+    - target: {fileID: 8747885162890836148, guid: 8db5439d47805de408c9e0db9e14ed4e,
+        type: 3}
+      propertyPath: DEBUG_typesOfControl.Array.data[1]
+      value: 
+      objectReference: {fileID: 2001614177029765182, guid: 60f2b7cc8b0b63a48944e1fcc463da1b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8db5439d47805de408c9e0db9e14ed4e, type: 3}

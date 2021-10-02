@@ -9,10 +9,7 @@ public class Control : MonoBehaviour
 {
     public int ySize;
     public int xSize;
-
     public GameObject ControlBody;
-
-    public bool[,] oddShapeCheck; 
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +22,4 @@ public class Control : MonoBehaviour
     {
         
     }
-
-    public virtual bool isOddShape()
-    {
-        return false;
-    }
-
 }
