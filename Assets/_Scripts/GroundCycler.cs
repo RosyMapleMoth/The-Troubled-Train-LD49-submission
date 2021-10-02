@@ -21,9 +21,9 @@ public class GroundCycler : MonoBehaviour
     private void Start()
     {
         // Initialize all three tiles with the first prefab in the list
-        prevTile = GameObject.Instantiate(terrainTilePrefabs[0], new Vector3(0, 0, -500), Quaternion.Euler(0, 0, 0)); // Previous tile behind
+        prevTile = GameObject.Instantiate(terrainTilePrefabs[0], new Vector3(0, 0, -500), Quaternion.Euler(0, 0, 0), transform); // Previous tile behind
         currTile = GameObject.Instantiate(terrainTilePrefabs[0], transform); // Current tile at 0
-        nextTile = GameObject.Instantiate(terrainTilePrefabs[0], new Vector3(0, 0, 500), Quaternion.Euler(0, 0, 0)); // Next tile ahead
+        nextTile = GameObject.Instantiate(terrainTilePrefabs[0], new Vector3(0, 0, 500), Quaternion.Euler(0, 0, 0), transform); // Next tile ahead
     }
 
     private void Update()
@@ -44,7 +44,7 @@ public class GroundCycler : MonoBehaviour
             currTile = nextTile;
 
             // Generate the new next
-            nextTile = GameObject.Instantiate(terrainTilePrefabs[0], currTile.transform.position + new Vector3(0, 0, 500), Quaternion.Euler(0, 0, 0));
+            nextTile = GameObject.Instantiate(terrainTilePrefabs[0], currTile.transform.position + new Vector3(0, 0, 500), Quaternion.Euler(0, 0, 0), transform);
         }
     }
 }
