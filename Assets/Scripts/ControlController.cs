@@ -140,6 +140,7 @@ public class ControlController : MonoBehaviour
                 temp.transform.SetParent(Camera.main.transform);
                 Debug.Log ("Control Controller : placing element at internal row " + tempRow + " , col " + tempCol + " real row " + (UI_SCALER*(tempRow + HIGHT_OFFSET)) + " , col " + (UI_SCALER*(tempCol + WIDTH_OFFSET)));
                 temp.transform.localPosition = new Vector3 (UI_SCALER*(tempCol + WIDTH_OFFSET), UI_SCALER*(tempRow + HIGHT_OFFSET), 4);
+                placement_successful = true;
 
                 for (int r = 0; r < control.ySize;r++)
                 {
@@ -152,11 +153,34 @@ public class ControlController : MonoBehaviour
             else 
             {
                 Debug.Log("Stack Overflow when adding new UI element. skipping add event");
+                attempts++;
             }
         } while (!placement_successful && attempts < 10);
+
+        
         if (!placement_successful)
         {
-            Debug.Log ("Failed to place Control after " + attempts + "attempts, bother Seaney about adding a better soulution to ensure placement is possible");
+            Vector2 tempVec = checkForAvilableSpace(control);
+            if (!tempVec.Equals(Vector2.negativeInfinity))
+            {
+                GameObject temp = Instantiate(control.ControlBody,Camera.main.transform.position,Camera.main.transform.rotation);
+                temp.transform.SetParent(Camera.main.transform);
+                Debug.Log ("Control Controller : Placing element at internal (" + tempVec.x + "," + tempVec.y + ") real (" + (UI_SCALER*(tempVec.x + HIGHT_OFFSET)) + "," + (UI_SCALER*(tempVec.x + WIDTH_OFFSET)+ ")"));
+                temp.transform.localPosition = new Vector3 (UI_SCALER*(tempVec.y + WIDTH_OFFSET), UI_SCALER*(tempVec.x + HIGHT_OFFSET), DEPTH);
+                placement_successful = true;
+
+                for (int r = 0; r < control.ySize;r++)
+                {
+                    for (int c = 0; c < control.xSize; c++)
+                    {
+                        controlBoard[r+(int)tempVec.x,c+(int)tempVec.y] = true;
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("Could not find space for your Control");
+            }
         }
     }
 
