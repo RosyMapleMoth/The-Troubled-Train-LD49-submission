@@ -29,32 +29,19 @@ public class Train : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (camera.orthographicSize < 25)
-        //{
-        //    if (camera.transform.position.z > ((cars.Count - 1) * -15.75f))
-        //    {
-        //        camera.transform.position -= new Vector3(0, 0, (cameraSpeed * Time.deltaTime));
-        //    }
-        //    if (camera.orthographicSize < (11 + (cars.Count * 2)))
-        //    {
-        //        camera.orthographicSize += cameraZoomSpeed * Time.deltaTime;
-        //    }
-        //}
-        //else
-        //{
-        //    if (camera.transform.position.z > ((cars.Count - 1) * -21f))
-        //    {
-        //        camera.transform.position -= new Vector3(0, 0, (cameraSpeed * Time.deltaTime));
-        //    }
-        //}
-
         if(Input.GetKey(KeyCode.D))
         {
-            camera.transform.position += new Vector3(0, 0, (cameraSpeed * Time.deltaTime));
+            if(camera.transform.position.z < -15.75f)
+            {
+                camera.transform.position += new Vector3(0, 0, (cameraSpeed * Time.deltaTime));
+            }
         }
         if (Input.GetKey(KeyCode.A))
         {
-            camera.transform.position -= new Vector3(0, 0, (cameraSpeed * Time.deltaTime));
+            if (camera.transform.position.z > (-15.75f - (21 * cars.Count)))
+            {
+                camera.transform.position -= new Vector3(0, 0, (cameraSpeed * Time.deltaTime));
+            }
         }
 
         // DEBUGING! :D
