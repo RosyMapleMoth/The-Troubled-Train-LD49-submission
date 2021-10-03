@@ -102,6 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7195890419709987708}
+  - component: {fileID: 1024265438121676426}
   m_Layer: 0
   m_Name: Car Revealed
   m_TagString: Untagged
@@ -125,6 +126,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1024265438121676426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7195890419709987651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7530ea33273e34a918642d462566d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coal: {fileID: 342802907462515419, guid: 60f2b7cc8b0b63a48944e1fcc463da1b, type: 3}
 --- !u!1 &7195890419960172108
 GameObject:
   m_ObjectHideFlags: 0
