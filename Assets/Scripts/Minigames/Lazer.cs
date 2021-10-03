@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Lazer : MonoBehaviour
 {
+    public AudioSource beeper;
 
     private const float DESTRUCTION_TIMER_BASE = 7f;
     private const float CHECK_TIMER_BASE = 3f;
 
     public float changeCheck = CHECK_TIMER_BASE;
+
+    public static explicit operator Lazer(GameObject v)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public float timeUntilDestruction = DESTRUCTION_TIMER_BASE; 
 
     public GameObject PlusButton;
@@ -180,5 +187,10 @@ public class Lazer : MonoBehaviour
     public float GetLeftOrRight()
     {
         return anim.GetFloat("Hand");
+    }
+
+    public void Beep()
+    {
+        beeper.Play();
     }
 }
