@@ -166,7 +166,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.152
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1036,7 +1036,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 977542e952fbe56478e2c704864a1659, type: 2}
+  - {fileID: 2100000, guid: f539e14f30e25e847aeb32379e9cf86f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1225,7 +1225,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 977542e952fbe56478e2c704864a1659, type: 2}
+  - {fileID: 2100000, guid: f539e14f30e25e847aeb32379e9cf86f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
