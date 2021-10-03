@@ -24,8 +24,16 @@ public class Lazer : MonoBehaviour
 
     private float CurrentTarget  = -1;
 
-
-
+    private void Awake()
+    {
+        foreach(LazerCar car in FindObjectsOfType<LazerCar>())
+        {
+            if(!car.HasGame())
+            {
+                car.SetGame(this);
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -167,5 +175,10 @@ public class Lazer : MonoBehaviour
     public void DestoryControl()
     {
         
+    }
+
+    public float GetLeftOrRight()
+    {
+        return anim.GetFloat("Hand");
     }
 }

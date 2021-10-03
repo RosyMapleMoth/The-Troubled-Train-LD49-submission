@@ -15,7 +15,7 @@ public class Train : MonoBehaviour
 
     public List<GameObject> carTypes; // Prefabs for revealed cars
 
-    private List<GameObject> cars; // All of the cars which form the train
+    public List<GameObject> cars; // All of the cars which form the train
 
     private bool cameraSnapping = false; // Used to determine if the car is snapping 
     private float cameraSnapTime = 0f; // Used to track when the camera started snapping
