@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Lazer : MonoBehaviour
 {
-    public AudioSource beeper;
+    public AudioSource warningBeeper;
+    public AudioSource targetBeeper;
 
     private const float DESTRUCTION_TIMER_BASE = 7f;
     private const float CHECK_TIMER_BASE = 3f;
@@ -31,6 +32,8 @@ public class Lazer : MonoBehaviour
 
     private float CurrentTarget  = -1;
 
+    private LazerCar lazerCar;
+
     private void Awake()
     {
         foreach(LazerCar car in FindObjectsOfType<LazerCar>())
@@ -38,6 +41,7 @@ public class Lazer : MonoBehaviour
             if(!car.HasGame())
             {
                 car.SetGame(this);
+                lazerCar = car;
             }
         }
     }
@@ -176,6 +180,9 @@ public class Lazer : MonoBehaviour
         anim.SetBool("Alien Right", false);
         anim.SetFloat("Alien Urgency", 1f);
         alienAttack = false;
+
+        targetBeeper.Play();
+        lazerCar.ShootAlien();
     }
 
 
@@ -191,6 +198,6 @@ public class Lazer : MonoBehaviour
 
     public void Beep()
     {
-        beeper.Play();
+        warningBeeper.Play();
     }
 }
