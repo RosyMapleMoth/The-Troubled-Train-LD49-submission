@@ -159,6 +159,8 @@ MonoBehaviour:
     type: 3}
   carTypes:
   - {fileID: 7195890419709987651, guid: a185392a430480e45a6c09dab3578ad1, type: 3}
+  - {fileID: 7195890419709987651, guid: 433b3bf73f3d392469656ea44feed97a, type: 3}
+  - {fileID: 5588285716285074313, guid: 115b406f929467b4ab476b7619c1d36b, type: 3}
   cars: []
 --- !u!4 &62051335
 Transform:

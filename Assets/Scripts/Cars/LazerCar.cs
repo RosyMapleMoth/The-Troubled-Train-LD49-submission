@@ -8,6 +8,8 @@ public class LazerCar : MonoBehaviour
 
     public GameObject gun;
 
+    public AudioSource lazerNoise;
+
     private ControlController controller;
 
     private Lazer myGame;
@@ -35,7 +37,10 @@ public class LazerCar : MonoBehaviour
     public void SetGame(Lazer game)
     {
         myGame = game;
+    }
 
-
+    public void ShootAlien()
+    {
+        lazerNoise.Play();
     }
 }

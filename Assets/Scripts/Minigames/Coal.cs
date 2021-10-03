@@ -6,6 +6,10 @@ public class Coal : MonoBehaviour
 {
     public GameObject button;
 
+    public AudioSource coalSound;
+    public AudioSource engineDyingSound;
+    public AudioSource overheatSound;
+
     private GroundCycler cycler;
 
     private float heat = 5f;
@@ -41,6 +45,8 @@ public class Coal : MonoBehaviour
                     anim.SetTrigger("Button Press");
 
                     heat += fuel;
+
+                    coalSound.Play();
                 }
             }
         }
@@ -67,23 +73,21 @@ public class Coal : MonoBehaviour
 
             cycler.speed += speedFactor * Time.deltaTime;
         }
-        //else if (cycler.speed < 75f)
-        //{
-        //    cycler.speed += speedFactor * Time.deltaTime;
-        //}
-        //else if (cycler.speed > 75f)
-        //{
-        //    cycler.speed -= speedFactor * Time.deltaTime;
-        //}
     }
 
     private void Die()
     {
-        Debug.Log("I'm dead XwX");
+        if (!engineDyingSound.isPlaying)
+        {
+            engineDyingSound.Play();
+        }
     }
 
     private void Overheat()
     {
-        Debug.Log("It's too hot UwU");
+        if(!overheatSound.isPlaying)
+        {
+            overheatSound.Play();
+        }
     }
 }
