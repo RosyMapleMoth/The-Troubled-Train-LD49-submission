@@ -78,7 +78,7 @@ public class Train : MonoBehaviour
     private void RevealCar()
     {
         Destroy(cars[cars.Count - 1]);
-        cars[cars.Count - 1] = Instantiate(carTypes[0], transform);
+        cars[cars.Count - 1] = Instantiate(carTypes[Random.Range(0, carTypes.Count)], transform);
         cars[cars.Count - 1].transform.position = new Vector3(0, 0, ((cars.Count - 1) * -21));
         AddHiddenCar();
         MoveCameraToCar(cars.Count - 2);

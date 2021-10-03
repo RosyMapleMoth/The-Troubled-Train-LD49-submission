@@ -158,7 +158,7 @@ MonoBehaviour:
   hiddenCar: {fileID: 7195890419709987651, guid: 49489f68cec830a4abb82b0342fa199f,
     type: 3}
   carTypes:
-  - {fileID: 7195890419709987651, guid: c0963c1a88898824ea10c1001c509e25, type: 3}
+  - {fileID: 5588285716285074313, guid: 115b406f929467b4ab476b7619c1d36b, type: 3}
 --- !u!4 &62051335
 Transform:
   m_ObjectHideFlags: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terrainTilePrefabs:
   - {fileID: 207473335101698073, guid: e0b05d9710b1fd6429bc2c3106e284f4, type: 3}
-  speed: 75
+  speed: 50
 --- !u!1 &1060237501
 GameObject:
   m_ObjectHideFlags: 0
