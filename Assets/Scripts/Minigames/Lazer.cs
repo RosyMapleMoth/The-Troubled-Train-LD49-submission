@@ -5,7 +5,6 @@ using UnityEngine;
 public class Lazer : MonoBehaviour
 {
 
-
     private const float DESTRUCTION_TIMER_BASE = 7f;
     private const float CHECK_TIMER_BASE = 3f;
 
@@ -66,6 +65,20 @@ public class Lazer : MonoBehaviour
                     anim.SetFloat("Hand", move);
                 }
             }
+        }
+        else
+        {
+            float move = anim.GetFloat("Hand");
+            if (move > 0.5f)
+            {
+                move -= 0.03f * Time.deltaTime;
+            }
+            else 
+            {
+                move += 0.03f * Time.deltaTime;
+            }
+            anim.SetFloat("Hand", move);
+            
         }
 
         if (alienAttack)
