@@ -10,9 +10,21 @@ public class ControlController : MonoBehaviour
 
     private const int DEPTH = 9;
     private const int HIGHT = 7;
-    private const int WIDTH = 13;
+
+    private const int WIDTH_5x4_4x3 = 9;
+    private const int WIDTH_3x2_16x10 = 11;
+    private const int WIDTH_16x9 = 13;
+    private int WIDTH = WIDTH_16x9;
+
+
+    private const int WIDTH_OFFSET_5x4_4x3 = -4;
+    private const int WIDTH_OFFSET_3x2_16x10 = -5;
+
+    private const int WIDTH_OFFSET_16x9 = -6;
+
+
     private const int HIGHT_OFFSET = -3;
-    private const int WIDTH_OFFSET = -6;
+    private int WIDTH_OFFSET = -6;
     private const int UI_SCALER = 4;
     public bool[,] controlBoard;
     private List<Control> currentlyAvilableControls;
@@ -30,6 +42,27 @@ public class ControlController : MonoBehaviour
             currentlyAvilableControls.Add(control.GetComponent<Control>());
         }
         
+        Debug.Log(Camera.main.aspect);
+        Debug.Log(4f/3f);
+        if (Camera.main.aspect <= 1.4f )
+        {
+            WIDTH = WIDTH_5x4_4x3;
+            WIDTH_OFFSET = WIDTH_OFFSET_5x4_4x3;
+            Debug.Log("setitng 5x4 or 43");
+        }
+        else if (Camera.main.aspect <= 1.65f)
+        {
+            WIDTH = WIDTH_3x2_16x10;
+            WIDTH_OFFSET = WIDTH_OFFSET_3x2_16x10;
+            Debug.Log("setitng 3x2 or 19_10");
+        }
+        else
+        {
+            WIDTH = WIDTH_16x9;
+            WIDTH_OFFSET = WIDTH_OFFSET_16x9;
+            Debug.Log("setitng 16_9");
+        }
+
     }
 
     // Update is called once per frame
