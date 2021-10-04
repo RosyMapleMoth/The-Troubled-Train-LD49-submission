@@ -18,19 +18,17 @@ public class Lazer : MonoBehaviour
     }
 
     public float timeUntilDestruction = DESTRUCTION_TIMER_BASE; 
-
     public GameObject PlusButton;
     public GameObject MinusButton;
     public float movePerClick;
     Animator anim;
-
     public const float RIGHT_TARGET = 1;
     public const float LEFT_TARGET = 0;
-    
+    public Alienshipcontroller alienship;
     private bool alienAttack = false;
     private bool Destroied = false;
 
-    private float CurrentTarget  = -1;
+    private int CurrentTarget  = -1;
 
     private LazerCar lazerCar;
 
@@ -42,6 +40,7 @@ public class Lazer : MonoBehaviour
             {
                 car.SetGame(this);
                 lazerCar = car;
+                alienship = lazerCar.alienshipcontroller;
             }
         }
     }
@@ -156,6 +155,7 @@ public class Lazer : MonoBehaviour
                 timeUntilDestruction = DESTRUCTION_TIMER_BASE;
                 alienAttack = true;
 
+                alienship.alienEnter(CurrentTarget);
                 if (CurrentTarget == 0)
                 {
                     anim.SetBool("Alien Left", true);
@@ -179,6 +179,7 @@ public class Lazer : MonoBehaviour
         anim.SetBool("Alien Left", false);
         anim.SetBool("Alien Right", false);
         anim.SetFloat("Alien Urgency", 1f);
+        alienship.alienExit();
         alienAttack = false;
 
         targetBeeper.Play();

@@ -8,7 +8,7 @@ public class ControlController : MonoBehaviour
 {
 
 
-    private const int DEPTH = 4;
+    private const int DEPTH = 8;
     private const int HIGHT = 7;
     private const int WIDTH = 13;
     private const int HIGHT_OFFSET = -3;

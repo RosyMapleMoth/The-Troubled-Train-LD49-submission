@@ -12,6 +12,8 @@ public class LazerCar : MonoBehaviour
 
     private ControlController controller;
 
+    public Alienshipcontroller alienshipcontroller;
+
     private Lazer myGame;
 
     void Awake()
