@@ -6159,6 +6159,14 @@ MonoBehaviour:
   airNoise: {fileID: 5703160424991306027}
   fireNoise: {fileID: 8786712534080327401}
   waterNoise: {fileID: 4047823084391149165}
+  earthInactive: {fileID: 2100000, guid: 6e1a3cb84f7dae7499ba78c4e0219475, type: 2}
+  earthActive: {fileID: 2100000, guid: 86a3d26a248573b4e881795671c8e633, type: 2}
+  airInactive: {fileID: 2100000, guid: f5d9e6fc12521e94499bd8499beac078, type: 2}
+  airActive: {fileID: 2100000, guid: 8c5e9a6f25f7897468c9add6bdc71788, type: 2}
+  fireInactive: {fileID: 2100000, guid: 24b3a722176e9a14e882685d6cd90e96, type: 2}
+  fireActive: {fileID: 2100000, guid: f571acf1534feb34f85a4264dff0be22, type: 2}
+  waterInactive: {fileID: 2100000, guid: f0dc998417554f54593cd1306bd45767, type: 2}
+  waterActive: {fileID: 2100000, guid: 316c546a29626b9449fcc556e1f95fb4, type: 2}
   wizardNoise: {fileID: 6134941689016994424}
   successNoise: {fileID: 4028782923144545851}
 --- !u!1 &4753490530942047179
