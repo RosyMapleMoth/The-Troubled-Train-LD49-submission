@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class Control : MonoBehaviour
 {
+
+
+    public GameObject gameOver;
     public int ySize;
     public int xSize;
     public GameObject ControlBody;
@@ -22,4 +25,14 @@ public class Control : MonoBehaviour
     {
         
     }
+
+
+    public void MiniGameOver()
+    {
+        gameOver.SetActive(true);
+        GameUI.Instance
+    }
+
+
+
 }

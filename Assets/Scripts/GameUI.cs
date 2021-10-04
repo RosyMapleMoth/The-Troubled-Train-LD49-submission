@@ -14,6 +14,26 @@ public class GameUI : MonoBehaviour
 
     private float distance = 0f;
 
+    private const int possableMistakes = 5;
+    private int Mistakes = 0;
+
+
+    private static GameUI _instance;
+
+    public static GameUI Instance
+    {
+        get
+        {
+            if(_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<GameUI>();
+            }
+
+            return _instance;
+        }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,4 +77,10 @@ public class GameUI : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void LoseMiniGame()
+    {
+        Mistakes++; 
+    }
+
 }
