@@ -69,7 +69,7 @@ public class GameUI : MonoBehaviour
         if (distance > CurTarget)
         {
             TryToaddCar();
-            CurTarget = SubsequentCarMilestone * train.cars.Count;
+            CurTarget = SubsequentCarMilestone * train.cars.Count - 1;
         }
     }
 
