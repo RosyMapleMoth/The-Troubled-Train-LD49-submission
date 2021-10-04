@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3244915996341453899}
   - component: {fileID: 7795205179510260353}
   - component: {fileID: 3753344672190909890}
+  - component: {fileID: 3917420936897672110}
   m_Layer: 0
   m_Name: Bullet 2
   m_TagString: Untagged
@@ -162,6 +163,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &3917420936897672110
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143381592602528018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.50000036
+  m_Height: 2.0000002
+  m_Direction: 1
+  m_Center: {x: 0.0000005364418, y: 0.00000047683716, z: 0.00000062584877}
 --- !u!1 &4830601858014302309
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +281,7 @@ GameObject:
   - component: {fileID: 8112084955808059107}
   - component: {fileID: 2461753861711610779}
   - component: {fileID: 2033531388015728237}
+  - component: {fileID: 3047671754022289881}
   m_Layer: 0
   m_Name: 4shooter Control
   m_TagString: Untagged
@@ -327,6 +343,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3047671754022289881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091800315096118085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a4a8faa623bea4d9ad8b564c41be9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullets:
+  - {fileID: 5537876963518284881}
+  - {fileID: 2143381592602528018}
+  - {fileID: 8950385727249795048}
+  - {fileID: 6451676635780719192}
+  shotsFired: 0
 --- !u!1 &5269338492513823408
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +465,7 @@ GameObject:
   - component: {fileID: 7464232495964851795}
   - component: {fileID: 8449529957390721359}
   - component: {fileID: 6392611224341350490}
+  - component: {fileID: 5934136935938639498}
   m_Layer: 0
   m_Name: Bullet 1
   m_TagString: Untagged
@@ -499,6 +534,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &5934136935938639498
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537876963518284881}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.50000036
+  m_Height: 2.0000002
+  m_Direction: 1
+  m_Center: {x: 0.000000059604666, y: 0.00000023841858, z: 0.00000038743016}
 --- !u!1 &6425326936951727798
 GameObject:
   m_ObjectHideFlags: 0
@@ -5263,6 +5312,7 @@ GameObject:
   - component: {fileID: 8800039025908566630}
   - component: {fileID: 748072561106658417}
   - component: {fileID: 2019383415308892824}
+  - component: {fileID: 1431288911781552056}
   m_Layer: 0
   m_Name: Bullet 4
   m_TagString: Untagged
@@ -5331,6 +5381,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &1431288911781552056
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451676635780719192}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.50000036
+  m_Height: 2.0000002
+  m_Direction: 1
+  m_Center: {x: 0.00000029802325, y: 0.00000023841858, z: -0.0000005662441}
 --- !u!1 &7433944108868507267
 GameObject:
   m_ObjectHideFlags: 0
@@ -5528,6 +5592,7 @@ GameObject:
   - component: {fileID: 5988948192232973914}
   - component: {fileID: 2737025530338378087}
   - component: {fileID: 6340382638082723257}
+  - component: {fileID: 3745909950339134499}
   m_Layer: 0
   m_Name: Bullet 3
   m_TagString: Untagged
@@ -5596,3 +5661,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &3745909950339134499
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950385727249795048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.50000036
+  m_Height: 2.0000002
+  m_Direction: 1
+  m_Center: {x: 0.00000029802325, y: 0.00000047683716, z: 0.00000038743016}
