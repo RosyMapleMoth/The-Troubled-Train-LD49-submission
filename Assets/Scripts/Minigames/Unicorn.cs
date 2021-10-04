@@ -19,6 +19,15 @@ public class Unicorn : MonoBehaviour
     public AudioSource fireNoise;
     public AudioSource waterNoise;
 
+    public Material earthInactive;
+    public Material earthActive;
+    public Material airInactive;
+    public Material airActive;
+    public Material fireInactive;
+    public Material fireActive;
+    public Material waterInactive;
+    public Material waterActive;
+
     public AudioSource wizardNoise;
     public AudioSource successNoise;
 
@@ -152,7 +161,7 @@ public class Unicorn : MonoBehaviour
     }
 
     private void WarnAir()
-    {
+    {        
         warningLabel.text = "A";
     }
 
@@ -173,6 +182,11 @@ public class Unicorn : MonoBehaviour
 
     private void PressEarth()
     {
+        earthButton.GetComponent<Renderer>().material = earthActive;
+        airButton.GetComponent<Renderer>().material = airInactive;
+        fireButton.GetComponent<Renderer>().material = fireInactive;
+        waterButton.GetComponent<Renderer>().material = waterInactive;
+
         earthNoise.Play();
         car.EarthShield();
         activeShieldCode = 0;
@@ -180,6 +194,11 @@ public class Unicorn : MonoBehaviour
 
     private void PressAir()
     {
+        earthButton.GetComponent<Renderer>().material = earthInactive;
+        airButton.GetComponent<Renderer>().material = airActive;
+        fireButton.GetComponent<Renderer>().material = fireInactive;
+        waterButton.GetComponent<Renderer>().material = waterInactive;
+
         airNoise.Play();
         car.AirShield();
         activeShieldCode = 1;
@@ -187,6 +206,11 @@ public class Unicorn : MonoBehaviour
 
     private void PressFire()
     {
+        earthButton.GetComponent<Renderer>().material = earthInactive;
+        airButton.GetComponent<Renderer>().material = airInactive;
+        fireButton.GetComponent<Renderer>().material = fireActive;
+        waterButton.GetComponent<Renderer>().material = waterInactive;
+
         fireNoise.Play();
         car.FireShield();
         activeShieldCode = 2;
@@ -194,6 +218,11 @@ public class Unicorn : MonoBehaviour
 
     private void PressWater()
     {
+        earthButton.GetComponent<Renderer>().material = earthInactive;
+        airButton.GetComponent<Renderer>().material = airInactive;
+        fireButton.GetComponent<Renderer>().material = fireInactive;
+        waterButton.GetComponent<Renderer>().material = waterActive;
+
         waterNoise.Play();
         car.WaterShield();
         activeShieldCode = 3;
