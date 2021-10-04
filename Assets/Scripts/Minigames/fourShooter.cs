@@ -9,7 +9,10 @@ public class fourShooter : MonoBehaviour
     private Animator anim;
     public Control myController;
     private bool FailedGame = false;
-    public int shotsFired; 
+    public int shotsFired;
+
+    public AudioSource gunshotNoise;
+    public AudioSource reloadNoise;
 
 
     private const float BANDIT_TIMER_RESET = 5f;
@@ -62,6 +65,7 @@ public class fourShooter : MonoBehaviour
         {
             anim.SetTrigger("Shoot bullet");
             anim.SetTrigger("Trigger Smoke Effect");
+            gunshotNoise.Play();
             shotsFired++;
             BanditTimer = BANDIT_TIMER_RESET;
             if (shotsFired > 5)
@@ -84,6 +88,7 @@ public class fourShooter : MonoBehaviour
                         if (!anim.IsInTransition(0))
                         {
                             anim.SetTrigger("Reload Bullet");
+                            reloadNoise.Play();
                             shotsFired--;
                         }
                     }
