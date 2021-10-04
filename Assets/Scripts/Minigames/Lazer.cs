@@ -223,6 +223,9 @@ public class Lazer : MonoBehaviour
 
     public void Beep()
     {
-        warningBeeper.Play();
+        if (!myController.Broken)
+        {
+            warningBeeper.Play();    
+        }
     }
 }
