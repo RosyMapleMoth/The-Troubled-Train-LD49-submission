@@ -448,6 +448,7 @@ GameObject:
   - component: {fileID: 97758145}
   - component: {fileID: 97758147}
   - component: {fileID: 97758146}
+  - component: {fileID: 97758148}
   m_Layer: 5
   m_Name: Game Over Menu
   m_TagString: Untagged
@@ -512,6 +513,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97758144}
   m_CullTransparentMesh: 0
+--- !u!114 &97758148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97758144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1946594c09cdbf7408b384794cb5fadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &120327179
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,8 +685,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 643910465}
-        m_MethodName: 
+      - m_Target: {fileID: 97758148}
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1507,8 +1520,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 643910465}
-        m_MethodName: 
+      - m_Target: {fileID: 97758148}
+        m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

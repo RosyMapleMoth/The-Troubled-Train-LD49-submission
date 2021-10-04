@@ -21,11 +21,13 @@ public class GameOverMenu : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Main Menu");
     }
 
     public void Restart()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("TrainMoveTest");
     }
 
