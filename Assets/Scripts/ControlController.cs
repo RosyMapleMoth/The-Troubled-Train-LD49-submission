@@ -8,7 +8,7 @@ public class ControlController : MonoBehaviour
 {
 
 
-    private const int DEPTH = 8;
+    private const int DEPTH = 9;
     private const int HIGHT = 7;
     private const int WIDTH = 13;
     private const int HIGHT_OFFSET = -3;
@@ -139,7 +139,7 @@ public class ControlController : MonoBehaviour
                 GameObject temp = Instantiate(control.ControlBody,Camera.main.transform.position,Camera.main.transform.rotation);
                 temp.transform.SetParent(Camera.main.transform);
                 Debug.Log ("Control Controller : placing element at internal row " + tempRow + " , col " + tempCol + " real row " + (UI_SCALER*(tempRow + HIGHT_OFFSET)) + " , col " + (UI_SCALER*(tempCol + WIDTH_OFFSET)));
-                temp.transform.localPosition = new Vector3 (UI_SCALER*(tempCol + WIDTH_OFFSET), UI_SCALER*(tempRow + HIGHT_OFFSET), 4);
+                temp.transform.localPosition = new Vector3 (UI_SCALER*(tempCol + WIDTH_OFFSET), UI_SCALER*(tempRow + HIGHT_OFFSET), DEPTH);
                 placement_successful = true;
 
                 for (int r = 0; r < control.ySize;r++)
