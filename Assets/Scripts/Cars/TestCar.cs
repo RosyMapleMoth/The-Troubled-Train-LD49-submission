@@ -8,12 +8,12 @@ public class TestCar : MonoBehaviour
 
     private ControlController controller;
 
-    void Awake()
+    public void Awake()
     {
         controller = FindObjectOfType<ControlController>();
     }
 
-    void Start()
+    public void Start()
     {
         controller.addSpecificControl(gamePrefab);
     }

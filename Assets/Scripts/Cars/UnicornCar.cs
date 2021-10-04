@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnicornCar : MonoBehaviour
+public class UnicornCar : TestCar
 {
     public GameObject wizard;
 
@@ -17,8 +17,9 @@ public class UnicornCar : MonoBehaviour
 
     private Unicorn uniGame;
 
-    void Awake()
+    public void Awake() 
     {
+        base.Awake();
         shield.SetActive(false);
     }
 

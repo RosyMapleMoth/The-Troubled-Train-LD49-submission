@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LazerCar : MonoBehaviour
+public class LazerCar : TestCar
 {
-    public Control gamePrefab;  // Assign your minigame prefab to this in the car's prefab
+    //public Control gamePrefab;  // Assign your minigame prefab to this in the car's prefab
 
     public GameObject gun;
 
     public AudioSource lazerNoise;
-
-    private ControlController controller;
 
     public Alienshipcontroller alienshipcontroller;
 
@@ -18,12 +16,14 @@ public class LazerCar : MonoBehaviour
 
     void Awake()
     {
-        controller = FindObjectOfType<ControlController>();
+        base.Awake();
+        // add car specific awake here
     }
 
     void Start()
     {
-        controller.addSpecificControl(gamePrefab);
+        base.Start();
+        // add car specific start up here
     }
 
     void Update()

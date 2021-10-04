@@ -124,7 +124,7 @@ public class ControlController : MonoBehaviour
         }
     }
 
-    public void addSpecificControl(Control control)
+    public bool addSpecificControl(Control control)
     {
         int attempts = 0;
         bool placement_successful = false;
@@ -149,6 +149,7 @@ public class ControlController : MonoBehaviour
                         controlBoard[r+tempRow,c+tempCol] = true;
                     }
                 }
+    
             }
             else 
             {
@@ -176,15 +177,21 @@ public class ControlController : MonoBehaviour
                         controlBoard[r+(int)tempVec.x,c+(int)tempVec.y] = true;
                     }
                 }
+                return true;
             }
             else
             {
                 Debug.Log("Could not find space for your Control");
+                return false;
             }
+        }
+        else
+        {
+            return true;
         }
     }
 
-    public void addSpecificControlAt(int row, int col, Control control)
+    public bool addSpecificControlAt(int row, int col, Control control)
     {
         if (IsValidPosition(row, col, control))
         {
@@ -200,16 +207,18 @@ public class ControlController : MonoBehaviour
                     controlBoard[r+row,c+col] = true;
                 }
             }
+            return true;
         }
         else
         {
             Debug.Log("Spot is not avilable for selected UI element");
+            return false;
         }
     }
 
 
 
-    public void addSpecificControlAt(Vector2 pos, Control control)
+    public bool addSpecificControlAt(Vector2 pos, Control control)
     {
         int row  = (int)pos.x;
         int col = (int)pos.y;
@@ -227,10 +236,12 @@ public class ControlController : MonoBehaviour
                     controlBoard[r+row,c+col] = true;
                 }
             }
+            return true;
         }
         else
         {
             Debug.Log("Spot is not avilable for selected UI element");
+            return false;
         }
     }
 

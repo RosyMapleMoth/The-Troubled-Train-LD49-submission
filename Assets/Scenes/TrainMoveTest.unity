@@ -423,6 +423,7 @@ MonoBehaviour:
   - {fileID: 4010462575399468053, guid: 996f49531eae77d4bb67a49568f3946a, type: 3}
   - {fileID: 5588285716285074313, guid: 115b406f929467b4ab476b7619c1d36b, type: 3}
   cars: []
+  controlController: {fileID: 1409348769}
 --- !u!4 &62051335
 Transform:
   m_ObjectHideFlags: 0
@@ -1072,6 +1073,8 @@ MonoBehaviour:
   gameOverSpeed: {fileID: 120327181}
   pauseScreen: {fileID: 273371274}
   gameoverScreen: {fileID: 97758144}
+  GameIsOver: 0
+  CurTarget: 50
 --- !u!114 &643910466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1726,6 +1729,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335152131}
   m_CullTransparentMesh: 0
+--- !u!114 &1409348769 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8105718668950141163, guid: f84c95d53c6555c44b53efaab4c8e5d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1277395337}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1744638cae7c51f4f922c9603f0fef94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1450669364
 GameObject:
   m_ObjectHideFlags: 0

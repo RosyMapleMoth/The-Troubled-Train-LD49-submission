@@ -15,7 +15,11 @@ public class Train : MonoBehaviour
 
     public List<GameObject> carTypes; // Prefabs for revealed cars
 
+    private List <GameObject> availableCarTypes;
+
     public List<GameObject> cars; // All of the cars which form the train
+
+    public ControlController controlController;
 
     private bool cameraSnapping = false; // Used to determine if the car is snapping 
     private float cameraSnapTime = 0f; // Used to track when the camera started snapping
@@ -26,7 +30,7 @@ public class Train : MonoBehaviour
     void Start()
     {
         cars = new List<GameObject>();
-
+        availableCarTypes = carTypes;
         cars.Add(Instantiate(locomotive, transform));
         AddHiddenCar();
     }
@@ -65,7 +69,7 @@ public class Train : MonoBehaviour
         // DEBUGING! :D
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            RevealCar();
+            //RevealCar();
         }
     }
 
@@ -75,13 +79,37 @@ public class Train : MonoBehaviour
         cars[cars.Count - 1].transform.position = new Vector3(0, 0, ((cars.Count - 1) * -21));
     }
 
-    private void RevealCar()
+    public void RevealCar()
     {
         Destroy(cars[cars.Count - 1]);
-        cars[cars.Count - 1] = Instantiate(carTypes[Random.Range(0, carTypes.Count)], transform);
-        cars[cars.Count - 1].transform.position = new Vector3(0, 0, ((cars.Count - 1) * -21));
-        AddHiddenCar();
-        MoveCameraToCar(cars.Count - 2);
+
+        bool carPicked  = false;
+        int temp = 0;
+        while (availableCarTypes.Count > 0 && !carPicked)
+        {
+            temp = Random.Range(0, carTypes.Count);
+            if (controlController.checkForAvilableSpace(carTypes[temp].GetComponent<TestCar>().gamePrefab).Equals(Vector2.negativeInfinity))
+            {
+                //Debug.Log("Car " availableCarTypes[temp].name + " could not be placed");
+                availableCarTypes.RemoveAt(temp);
+            }
+            else
+            {
+                carPicked = true;
+            }
+        }
+
+        if (carPicked)
+        {
+            cars[cars.Count - 1] = Instantiate(carTypes[Random.Range(0, carTypes.Count)], transform);
+            cars[cars.Count - 1].transform.position = new Vector3(0, 0, ((cars.Count - 1) * -21));
+            AddHiddenCar();
+            MoveCameraToCar(cars.Count - 2);
+        }
+        else
+        {
+            // TODO no more cars can be placed!!
+        }
     }
 
     private void RevealCar(int index)

@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Locomotive : MonoBehaviour
+public class Locomotive : TestCar
 {
-    public Control coal; // The prefab for the coal minigame
 
     private ControlController controller;
 
+
+
     void Awake()
     {
-        controller = (ControlController)FindObjectOfType<ControlController>();
+        base.Awake();
+        // add car specific awake here
     }
 
-
-    // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
-        controller.addSpecificControl(coal);
-        //controller.addRandomControl();
+        base.Start();
+        // add car specific start up here
     }
 
     // Update is called once per frame

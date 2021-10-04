@@ -20,9 +20,12 @@ public class GameUI : MonoBehaviour
     private float distance = 0f;
     private const int possableMistakes = 5;
     private int Mistakes = 0;
-
-
     private static GameUI _instance;
+
+    private int CurTarget;
+    public int FirstCarMilestone;
+    public int SubsequentCarMilestone;
+
 
     public static GameUI Instance
     {
@@ -37,12 +40,12 @@ public class GameUI : MonoBehaviour
         }
     }
 
-
     // Start is called before the first frame update
     void Start()
     {
-        
+        CurTarget = FirstCarMilestone;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -61,6 +64,13 @@ public class GameUI : MonoBehaviour
         speedText.text = ("Speed: " + KPHConvert(groundCycler.speed).ToString("F2") + " KPH");
         distanceText.text = ("Distance: " + distance.ToString("F2") + " M");
         failuresText.text = ("Failures: " + Mistakes.ToString() + " / " + possableMistakes.ToString());
+
+
+        if (distance > CurTarget)
+        {
+            TryToaddCar();
+            CurTarget = SubsequentCarMilestone * train.cars.Count;
+        }
     }
 
     public float KPHConvert(float input)
@@ -99,6 +109,18 @@ public class GameUI : MonoBehaviour
             gameOverSpeed.text = ("Final Speed : " + KPHConvert(groundCycler.speed).ToString("F2") + " KPH");
             gameoverScreen.SetActive(true);            
         }
+
+
+
+
+
+    }
+
+
+
+    public void TryToaddCar()
+    {
+        train.RevealCar();
     }
 
     public void LoseMiniGame()
