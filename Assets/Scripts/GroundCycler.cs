@@ -46,5 +46,10 @@ public class GroundCycler : MonoBehaviour
             // Generate the new next
             nextTile = GameObject.Instantiate(terrainTilePrefabs[0], currTile.transform.position + new Vector3(0, 0, 500), Quaternion.Euler(0, 0, 0), transform);
         }
+
+        if (speed <= 0)
+        {
+            GameUI.Instance.GameOver();
+        }
     }
 }

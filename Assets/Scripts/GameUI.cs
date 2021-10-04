@@ -10,11 +10,13 @@ public class GameUI : MonoBehaviour
     public Text speedText;
     public Text distanceText;
     public Text failuresText;
-
+    public Train train;
+    public Text gameOverDistance;
+    public Text gameOverModulas;
+    public Text gameOverSpeed;
     public GameObject pauseScreen;
-
+    public GameObject gameoverScreen;
     private float distance = 0f;
-
     private const int possableMistakes = 5;
     private int Mistakes = 0;
 
@@ -48,6 +50,10 @@ public class GameUI : MonoBehaviour
         {
             PauseToggle();
         }
+        if (Mistakes >= possableMistakes)
+        {
+            GameOver();
+        }
 
         distance += (groundCycler.speed * Time.deltaTime);
 
@@ -78,6 +84,15 @@ public class GameUI : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        gameOverDistance.text = ("Final Distance : " + distance.ToString("F2") + " M");
+        gameOverModulas.text = ("Train Langth :  " + train.cars.Count + " cars");
+        gameOverSpeed.text = ("Final Speed : " + KPHConvert(groundCycler.speed).ToString("F2") + " KPH");
+        gameoverScreen.SetActive(true);
     }
 
     public void LoseMiniGame()
