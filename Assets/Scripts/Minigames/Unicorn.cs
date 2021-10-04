@@ -30,6 +30,9 @@ public class Unicorn : MonoBehaviour
 
     public AudioSource wizardNoise;
     public AudioSource successNoise;
+    public AudioSource failureNoise;
+
+    public int hitPoints = 3;
 
     private UnicornCar car;
 
@@ -266,6 +269,16 @@ public class Unicorn : MonoBehaviour
         if(success)
         {
             successNoise.Play();
+        }
+        else
+        {
+            hitPoints--;
+            failureNoise.Play();
+
+            if(hitPoints == 0)
+            {
+                myController.loseMiniGame();
+            }
         }
     }
 
