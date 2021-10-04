@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject creditsPanel;
+    public GameObject infoPanel;
 
     public void PlayGame()
     {
@@ -14,13 +15,35 @@ public class MainMenu : MonoBehaviour
 
     public void CreditsToggle()
     {
-        if(creditsPanel.activeSelf)
+        if (infoPanel.activeSelf)
+        {
+            infoPanel.SetActive(false);
+        }
+
+        if (creditsPanel.activeSelf)
         {
             creditsPanel.SetActive(false);
         }
         else
         {
             creditsPanel.SetActive(true);
+        }
+    }
+
+    public void InfoToggle()
+    {
+        if (creditsPanel.activeSelf)
+        {
+            creditsPanel.SetActive(false);
+        }
+
+        if (infoPanel.activeSelf)
+        {
+            infoPanel.SetActive(false);
+        }
+        else
+        {
+            infoPanel.SetActive(true);
         }
     }
 
