@@ -50,7 +50,7 @@ MeshRenderer:
   m_GameObject: {fileID: 739011074164278895}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -992,7 +992,7 @@ MeshRenderer:
   m_GameObject: {fileID: 7371132813153169229}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -1328,6 +1328,7 @@ MonoBehaviour:
   Broken: 0
   ySize: 1
   xSize: 2
+  BrokenSmoke: {fileID: 0}
   ControlBody: {fileID: 7483823127927387781}
 --- !u!1 &7483823127997725567
 GameObject:
