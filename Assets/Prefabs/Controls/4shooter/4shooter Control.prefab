@@ -508,8 +508,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49dfd005544e3249bb82a2a77cf2841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOver: {fileID: 5742466251952869223}
+  Broken: 0
   ySize: 2
   xSize: 2
+  BrokenSmoke: {fileID: 4953276795325741301}
   ControlBody: {fileID: 5091800315096118085}
 --- !u!95 &2033531388015728237
 Animator:
@@ -547,6 +550,7 @@ MonoBehaviour:
   - {fileID: 2143381592602528018}
   - {fileID: 8950385727249795048}
   - {fileID: 6451676635780719192}
+  myController: {fileID: 0}
   shotsFired: 0
 --- !u!1 &5269338492513823408
 GameObject:

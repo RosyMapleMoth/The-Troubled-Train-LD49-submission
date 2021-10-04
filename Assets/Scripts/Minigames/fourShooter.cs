@@ -6,11 +6,9 @@ public class fourShooter : MonoBehaviour
 {
 
     public GameObject[] Bullets;
-    Animator anim;
-
-
+    private Animator anim;
+    public Control myController;
     private bool FailedGame = false;
-
     public int shotsFired; 
 
 
@@ -22,10 +20,41 @@ public class fourShooter : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        myController = gameObject.GetComponent<Control>();
+
     }
+
+
 
     // Update is called once per frame
     void Update()
+    {
+        if (!myController.Broken)
+        {
+            workingUpdate();
+        }
+        else
+        {
+            brokenUpdate();
+        }
+    }
+
+
+
+
+    /// <summary>
+    ///  TODO if you want any logical while broken run it in here
+    /// </summary>
+    public void brokenUpdate()
+    {
+
+    }
+
+
+    /// <summary>
+    /// All Logic for normal function happens here 
+    /// </summary>
+    public void workingUpdate()
     {
         BanditTimer -= Time.deltaTime;
 
@@ -35,6 +64,10 @@ public class fourShooter : MonoBehaviour
             anim.SetTrigger("Trigger Smoke Effect");
             shotsFired++;
             BanditTimer = BANDIT_TIMER_RESET;
+            if (shotsFired > 5)
+            {
+                myController.loseMiniGame();
+            }
 
         }
 

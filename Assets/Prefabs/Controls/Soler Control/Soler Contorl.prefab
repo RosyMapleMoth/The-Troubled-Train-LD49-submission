@@ -1324,6 +1324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49dfd005544e3249bb82a2a77cf2841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOver: {fileID: 2168621114879194185}
+  Broken: 0
   ySize: 1
   xSize: 2
   ControlBody: {fileID: 7483823127927387781}

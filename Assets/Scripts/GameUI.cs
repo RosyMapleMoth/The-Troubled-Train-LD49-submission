@@ -9,6 +9,7 @@ public class GameUI : MonoBehaviour
 
     public Text speedText;
     public Text distanceText;
+    public Text failuresText;
 
     public GameObject pauseScreen;
 
@@ -52,6 +53,7 @@ public class GameUI : MonoBehaviour
 
         speedText.text = ("Speed: " + KPHConvert(groundCycler.speed).ToString("F2") + " KPH");
         distanceText.text = ("Distance: " + distance.ToString("F2") + " M");
+        failuresText.text = ("Failures: " + Mistakes.ToString() + " / " + possableMistakes.ToString());
     }
 
     public float KPHConvert(float input)

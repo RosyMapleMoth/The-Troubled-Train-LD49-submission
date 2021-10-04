@@ -10,8 +10,13 @@ public class Control : MonoBehaviour
 
 
     public GameObject gameOver;
+
+    public bool Broken = false;
     public int ySize;
     public int xSize;
+
+    public ParticleSystem BrokenSmoke;
+
     public GameObject ControlBody;
 
     // Start is called before the first frame update
@@ -27,12 +32,11 @@ public class Control : MonoBehaviour
     }
 
 
-    public void MiniGameOver()
+    public void loseMiniGame()
     {
+        Broken = true;
+        BrokenSmoke.Play();
         gameOver.SetActive(true);
-        GameUI.Instance
+        GameUI.Instance.LoseMiniGame();
     }
-
-
-
 }

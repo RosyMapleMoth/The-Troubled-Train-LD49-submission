@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Unicorn : MonoBehaviour
 {
     public Text warningLabel;
-
+    public Control myController;
     public GameObject earthButton;
     public GameObject airButton;
     public GameObject fireButton;
@@ -47,10 +47,34 @@ public class Unicorn : MonoBehaviour
     void Start()
     {
         nextSpell = Time.time + Random.Range(3f, 5f);
+        myController = gameObject.GetComponent<Control>();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        if (!myController.Broken)
+        {
+            workingUpdate();
+        }
+        else
+        {
+            brokenUpdate();
+        }
+    }
+    /// <summary>
+    ///  TODO if you want any logical while broken run it in here
+    /// </summary>
+    public void brokenUpdate()
+    {
+
+    }
+
+
+    /// <summary>
+    /// All Logic for normal function happens here 
+    /// </summary>
+    public void workingUpdate()
     {
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -116,6 +140,11 @@ public class Unicorn : MonoBehaviour
             ResolveSpell();
         }
     }
+
+
+
+
+
 
     private void WarnEarth()
     {

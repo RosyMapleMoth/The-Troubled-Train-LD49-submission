@@ -6,7 +6,7 @@ public class Lazer : MonoBehaviour
 {
     public AudioSource warningBeeper;
     public AudioSource targetBeeper;
-
+    public Control myController;
     private const float DESTRUCTION_TIMER_BASE = 7f;
     private const float CHECK_TIMER_BASE = 3f;
 
@@ -49,10 +49,33 @@ public class Lazer : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        myController = gameObject.GetComponent<Control>();
+
     }
 
-    // Update is called once per frame
     void Update()
+    {
+        if (!myController.Broken)
+        {
+            workingUpdate();
+        }
+        else
+        {
+            brokenUpdate();
+        }
+    }
+
+    /// <summary>
+    ///  TODO if you want any logical while broken run it in here
+    /// </summary>
+    public void brokenUpdate()
+    {
+
+    }
+
+
+    // Update is called once per frame
+    private void workingUpdate()
     {
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -119,6 +142,7 @@ public class Lazer : MonoBehaviour
         timeUntilDestruction -= Time.deltaTime;
         if (timeUntilDestruction <= 0)
         {
+            myController.loseMiniGame();
             DestoryControl();
             Destroied = true;
             anim.SetBool("Alien Left", true);

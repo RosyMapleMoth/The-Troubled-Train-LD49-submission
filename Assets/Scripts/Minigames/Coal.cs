@@ -5,31 +5,54 @@ using UnityEngine;
 public class Coal : MonoBehaviour
 {
     public GameObject button;
-
+    public Control myController;
     public AudioSource coalSound;
     public AudioSource engineDyingSound;
     public AudioSource overheatSound;
-
     private GroundCycler cycler;
-
     private float heat = 5f;
     public float decay = 0.5f;
     public float fuel = 2f;
-
     public float slowFactor = 2f;
     public float speedFactor = 2f;
-
     Animator anim;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         cycler = (GroundCycler)FindObjectOfType(typeof(GroundCycler));
+        myController = gameObject.GetComponent<Control>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!myController.Broken)
+        {
+            workingUpdate();
+        }
+        else
+        {
+            brokenUpdate();
+        }
+    }
+
+
+    /// <summary>
+    ///  TODO if you want any logical while broken run it in here
+    /// </summary>
+    public void brokenUpdate()
+    {
+
+    }
+
+
+    /// <summary>
+    /// All Logic for normal function happens here 
+    /// </summary>
+    public void workingUpdate()
+    {
+        
         heat -= decay * Time.deltaTime;
 
         anim.SetFloat("Hand Position", (heat / 10f));
@@ -74,6 +97,7 @@ public class Coal : MonoBehaviour
             cycler.speed += speedFactor * Time.deltaTime;
         }
     }
+
 
     private void Die()
     {
