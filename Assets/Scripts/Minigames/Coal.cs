@@ -9,6 +9,7 @@ public class Coal : MonoBehaviour
     public AudioSource coalSound;
     public AudioSource engineDyingSound;
     public AudioSource overheatSound;
+    public float hitPoints = 7f;
     private GroundCycler cycler;
     private float heat = 5f;
     public float decay = 0.5f;
@@ -43,7 +44,11 @@ public class Coal : MonoBehaviour
     /// </summary>
     public void brokenUpdate()
     {
-
+        cycler.speed -= slowFactor * Time.deltaTime;
+        if (cycler.speed < 0)
+        {
+            cycler.speed = 0; // No reversing
+        }
     }
 
 
@@ -96,6 +101,11 @@ public class Coal : MonoBehaviour
 
             cycler.speed += speedFactor * Time.deltaTime;
         }
+
+        if(hitPoints <= 0)
+        {
+            Explode();
+        }
     }
 
 
@@ -109,9 +119,15 @@ public class Coal : MonoBehaviour
 
     private void Overheat()
     {
+        hitPoints -= Time.deltaTime;
         if(!overheatSound.isPlaying)
         {
             overheatSound.Play();
         }
+    }
+
+    private void Explode()
+    {
+        myController.loseMiniGame();
     }
 }

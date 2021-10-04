@@ -410,9 +410,10 @@ MonoBehaviour:
   coalSound: {fileID: 6936555998326283349}
   engineDyingSound: {fileID: 9039991806196565565}
   overheatSound: {fileID: 1504518798309688527}
+  hitPoints: 7
   decay: 0.5
   fuel: 2
-  slowFactor: 2
+  slowFactor: 0.5
   speedFactor: 2
 --- !u!1 &2043229703519455408
 GameObject:
