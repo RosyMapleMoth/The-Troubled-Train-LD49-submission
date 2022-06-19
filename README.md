@@ -22,10 +22,11 @@ to achive this thematically we set the screen to a 45 degree angle camra looking
 
 
 ## Achivemnet
-placed 1273rd of 2204 games in the overall catagory  _in the top ~57% percentile_
-placed 1002nd of 2204 games in the fun catagory _in the top ~45% percentile_
+Placed 1273rd of 2204 games in the overall catagory  _in the top ~57% percentile_
 
-more placement info avilable (here)[hhttps://ldjam.com/events/ludum-dare/49/the-troubled-train]
+Placed 1002nd of 2204 games in the fun catagory _in the top ~45% percentile_
+
+More placement info avilable at https://ldjam.com/events/ludum-dare/49/the-troubled-train
 
 
 ## how to play 
